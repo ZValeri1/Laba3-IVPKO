@@ -19,7 +19,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r C:\\Users\\User\\Desktop\\ИСПКО\\3Labarepo\\requirements.txt
+          pip install -r requirements.txt
 
       - name: Generate HTML Report
         run: |
