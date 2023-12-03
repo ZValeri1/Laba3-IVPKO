@@ -9,34 +9,27 @@ jobs:
   test:
     runs-on: windows-latest
 
-steps:
-  - name: Checkout Repository
-    uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-  - name: Set up Python
-    uses: actions/setup-python@v2
-    with:
-      python-version: 3.8
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
 
-  - name: Install Dependencies
-    run: |
-      pip install -r requirements.txt
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
 
-  - name: Generate HTML Report
-    run: |
-      pytest —html=report.html --self-contained-html
-    continue-on-error: true
+      - name: Generate HTML Report
+        run: |
+          pytest --html=report.html --self-contained-html 
+          continue-on-error: true
 
-  - name: Upload Test Report
-    if: success()
-    uses: actions/upload-artifact@v2
-    with:
-    - name: test-report
-      path: report.html
-
-  - name: Upload Code as Artifact
-    if: success()
-    uses: actions/upload-artifact@v2
-    with:
-    - name: code
-      path:
+      - name: Upload Test Report
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-report
+          path: report.html
